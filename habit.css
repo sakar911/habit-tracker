@@ -1,0 +1,331 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #d7f3e3, #a8e6cf);
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+#leaves-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+@media (max-width: 600px) {
+.input-section {
+flex-direction: column;
+gap: 5px;
+}
+
+/* Ensure the input and button fill the container */
+.input-section input,
+.input-section button {
+width: 100%;
+box-sizing: border-box;
+}
+}
+
+
+.leaf {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.2));
+    animation: fall linear infinite;
+}
+
+@media (max-width: 400px) {
+    .leaf {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+
+@keyframes fall {
+    0% {
+        transform: translateY(-100%) rotate(0deg);
+        opacity: 0.9;
+    }
+
+    100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0.5;
+    }
+}
+
+.quote-wrapper {
+    position: absolute;
+    /* Keeps it independent of content height */
+    top: 10px;
+    /* Adjust as needed */
+    left: 50%;
+    padding: 20px;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 400px;
+    font-size: 1.2em;
+    color: #388e3c;
+    font-style: italic;
+    text-align: center;
+    white-space: normal;
+    word-wrap: break-word;
+    overflow: hidden;
+}
+
+
+.quote {
+    display: inline-block;
+    padding-right: 5px;
+    /* This will help prevent the caret from overflowing */
+}
+
+@media (max-width: 600px) {
+    .quote-wrapper {
+        font-size: 1em;
+        width: 80%;
+    }
+
+    .container {
+        width: 90%;
+    }
+}
+
+
+.caret {
+    display: inline-block;
+    width: 4px;
+    height: 1.2em;
+    background-color: #388e3c;
+    animation: blinkCaret 0.75s step-end infinite;
+}
+
+@keyframes blinkCaret {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.container {
+    position: absolute;
+    /* Fixed placement */
+    top: 50%;
+    /* Adjust based on preference */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 350px;
+}
+
+
+h1 {
+    color: #2e7d32;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    letter-spacing: 1px;
+}
+
+.input-section {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+input {
+    flex: 1;
+    padding: 10px;
+    border: 2px solid #81c784;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+input:focus {
+    border-color: #388e3c;
+}
+
+button {
+    background: #388e3c;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+button:hover {
+    background: #2e7d32;
+    transform: scale(1.05);
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+li {
+    background: #e8f5e9;
+    padding: 12px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    opacity: 0;
+    transform: translateX(-20px);
+    animation: slideIn 0.5s forwards;
+    cursor: pointer;
+    position: relative;
+}
+
+li.completed {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+.delete-btn {
+    background: transparent;
+    border: none;
+    color: #d32f2f;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.delete-btn:hover {
+    color: #b71c1c;
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+ul::-webkit-scrollbar {
+    width: 6px;
+}
+
+ul::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+ul::-webkit-scrollbar-thumb {
+    background: #81c784;
+    border-radius: 10px;
+}
+
+@keyframes slideOut {
+    0% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+}
+
+.last {
+    bottom: 5%;
+    position: absolute;
+    left: 3%;
+}
+
+.last p {
+    font-family: monospace;
+    color: gray;
+}
+
+
+@media (max-width: 600px) {
+.quote-wrapper {
+font-size: 1em; /* Slightly smaller for mobile */
+padding: 5px;   /* Prevent text from touching the edges */
+}
+
+.container {
+width: 90%;
+padding: 20px;
+}
+
+h1 {
+font-size: 1.6em;
+}
+
+input {
+font-size: 1em;
+}
+
+button {
+font-size: 1em;
+}
+}
+
+
+
+@media (max-width: 400px) {
+.quote-wrapper {
+font-size: 0.9em;
+max-width: 300px;
+}
+
+.container {
+padding: 15px;
+width: 95%;
+}
+
+h1 {
+font-size: 1.5em;
+}
+}
